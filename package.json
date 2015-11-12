@@ -1,6 +1,6 @@
 {
   "name": "greek-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utilities for greek language such as accent and diacritics replacement",
   "main": "lib/greek-utils.js",
   "repository": {
