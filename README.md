@@ -3,6 +3,8 @@
 
 A JavaScript library for Greek language with utilities such as replacement of accented and other diacritics characters, conversion from greek to latin (a.k.a. greeklish) and more.
 
+[![NPM](https://nodei.co/npm/greek-utils.png)](https://nodei.co/npm/greek-utils/)
+
 Installation
 ----------
 ```javascript
