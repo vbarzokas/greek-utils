@@ -38,3 +38,23 @@ var greekUtils = require('greek-utils');
 var greek = greekUtils('kalhmera, pws eiste?').toGreek();
 console.log(greek.text); //καλημερα, πως ειστε?
 ```
+
+### - toGreeklish()
+Convert a Greek characters text to greeklish equivalent
+
+Example:
+```javascript
+var greekUtils = require('greek-utils');
+var greeklish = greekUtils('Το κάλλος είναι η καλύτερη συστατική επιστολή').toGreeklish();
+console.log(greeklish.text); //To kallos einai h kalyterh systatikh epistolh.
+```
+
+### - Chaining method
+Run multiple greekUtils functions within a single statement
+
+Example
+```javascript
+var greekUtils = require('greek-utils');
+var greek = greekUtils('Αχ, αφτάκια μου και μακριά μουστάκια μου, η ώρα πέρασε!').sanitizeDiacritics().toGreeklish();
+console.log(greek.text); //Ax, aftakia mou kai makria moustakia mou, h wra perase!
+```
