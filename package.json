@@ -1,20 +1,30 @@
 {
   "name": "greek-utils",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Utilities for greek language such as accent and diacritics replacement",
-  "main": "lib/greek-utils.js",
+  "author": "Vassilis Barzokas, Stergios Marias",
+  "license": "MIT",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/vbarzokas/greek-utils.git"
   },
+  "scripts": {
+    "test": "mocha"
+  },
   "keywords": [
     "greek",
     "string",
+    "diacritics",
+    "accents",
     "greek language",
     "greek accents",
     "greek diacritics",
     "greeklish"
   ],
-  "author": "Vassilis Barzokas, Stergios Marias",
-  "license": "MIT"
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
 }
