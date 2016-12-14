@@ -40,7 +40,7 @@ Convert a latin characters (a.k.a. greeklish) text to Greek equivalent
 Example:
 ```javascript
 var sanitized = greekUtils.toGreek('kalhmera, pws eiste?');
-console.log(greek); //καλημερα, πως ειστε?
+console.log(greek); //καλημερα, πως ειστε;
 ```
 
 ### - toGreeklish()

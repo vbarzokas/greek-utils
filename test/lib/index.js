@@ -8,7 +8,7 @@ describe('Greek Utils:', function () {
 	describe('Methods:', function() {
 		describe('toGreek', function() {
 			it('converts a string of latin characters to the equivalent greek characters.', function (done) {
-				assert.equal(greekUtils.toGreek('kalhmera, pws eiste?'), 'καλημερα, πως ειστε?');
+				assert.equal(greekUtils.toGreek('kalhmera, pws eiste?'), 'καλημερα, πως ειστε;');
 
 				done();
 			});
