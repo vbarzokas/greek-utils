@@ -35,19 +35,37 @@ console.log(sanitized); //Εξ ου και δηλον οτι ουδεμια τω
 ```
 
 ### - toGreek()
-Convert a latin characters (a.k.a. greeklish) text to Greek equivalent
+Convert a Latin characters text to its modern Greek equivalent
 
 Example:
 ```javascript
-var sanitized = greekUtils.toGreek('kalhmera, pws eiste?');
+var greek = greekUtils.toGreek('kalhmera, pws eiste?');
 console.log(greek); //καλημερα, πως ειστε;
 ```
 
 ### - toGreeklish()
-Convert a Greek characters text to greeklish equivalent
+Convert a modern Greek characters text to its [greeklish](https://en.wikipedia.org/wiki/Greeklish) equivalent
 
 Example:
 ```javascript
 var greeklish = greekUtils.toGreeklish('Το κάλλος είναι η καλύτερη συστατική επιστολή');
 console.log(greeklish); //To kallos einai h kalyterh systatikh epistolh.
+```
+
+### - toPhoneticLatin()
+Convert a modern Greek characters text to its phonetically equivalent Latin (sound mapping).
+
+Example:
+```javascript
+var phoneticLatin = greekUtils.toPhoneticLatin('Εύηχο: αυτό που ακούγεται ωραία.');
+console.log(phoneticLatin); //Évikho: aftó pou akoúyetai oraía.
+```
+
+### - toTransliteratedLatin()
+Convert a modern Greek characters text to its transliterated equivalent Latin (letter mapping).
+
+Example:
+```javascript
+var transliteratedLatin = greekUtils.toTransliteratedLatin('Εύηχο: αυτό που ακούγεται ωραία.');
+console.log(transliteratedLatin); //Eúēkho: autó pou akoúgetai ōraía.
 ```

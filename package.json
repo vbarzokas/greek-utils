@@ -1,7 +1,7 @@
 {
   "name": "greek-utils",
-  "version": "1.1.2",
-  "description": "Utilities for greek language such as accent and diacritics replacement",
+  "version": "1.2.0",
+  "description": "Utilities for Greek language such as accent and diacritics replacement",
   "author": "Vassilis Barzokas, Stergios Marias",
   "license": "MIT",
   "main": "lib/index.js",
@@ -20,7 +20,10 @@
     "greek language",
     "greek accents",
     "greek diacritics",
-    "greeklish"
+    "greeklish",
+    "transliterate",
+    "transcript",
+    "phonetic translate"
   ],
   "dependencies": {
   },

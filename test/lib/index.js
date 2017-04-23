@@ -5,32 +5,55 @@ var assert = require('assert'),
 	greekUtils = require(path.join(__dirname.replace('test', ''), 'index.js'));
 
 describe('Greek Utils:', function () {
-	describe('Methods:', function() {
-		describe('toGreek', function() {
-			it('converts a string of latin characters to the equivalent greek characters.', function (done) {
+	describe('Methods:', function () {
+		describe('toGreek', function () {
+			it('converts a string of Latin characters to the equivalent modern Greek characters.', function (done) {
+				assert.equal(greekUtils.toGreek('To kallos einai h kalyterh systatikh epistolh'),
+					'Το καλλος ειναι η καλυτερη συστατικη επιστολη');
+
 				assert.equal(greekUtils.toGreek('kalhmera, pws eiste?'), 'καλημερα, πως ειστε;');
 
 				done();
 			});
 		});
 
-		describe('toGreeklish', function() {
-			it('converts a string of greek characters to the equivalent greeklish characters.', function (done) {
+		describe('toGreeklish', function () {
+			it('converts a string of modern Greek characters to the equivalent greeklish characters.', function (done) {
 				assert.equal(greekUtils.toGreeklish('Το κάλλος είναι η καλύτερη συστατική επιστολή'),
 					'To kallos einai h kalyterh systatikh epistolh');
+
+				assert.equal(greekUtils.toGreeklish('καλημερα, πως ειστε;'), 'kalhmera, pws eiste?');
 
 				done();
 			});
 		});
 
-		describe('sanitizeDiacritics', function() {
-			it('converts a string of modern greek characters with diacritics to their simple equivalent.', function (done) {
+		describe('toPhoneticLatin', function () {
+			it('Convert a modern Greek characters text to its phonetically equivalent Latin.', function (done) {
+				assert.equal(greekUtils.toPhoneticLatin('Εύηχο: αυτό που ακούγεται ωραία.'),
+					'Évikho: aftó pou akoúyetai oraía.');
+
+				done();
+			});
+		});
+
+		describe('toTransliteratedLatin', function () {
+			it('Convert a modern Greek characters text to its transliterated equivalent Latin.', function (done) {
+				assert.equal(greekUtils.toTransliteratedLatin('Εύηχο: αυτό που ακούγεται ωραία.'),
+					'Eúēkho: autó pou akoúgetai ōraía.');
+
+				done();
+			});
+		});
+
+		describe('sanitizeDiacritics', function () {
+			it('converts a string of modern Greek characters with diacritics to their simple equivalent.', function (done) {
 				assert.equal(greekUtils.sanitizeDiacritics('Αρνάκι άσπρο και παχύ'), 'Αρνακι ασπρο και παχυ');
 
 				done();
 			});
 
-			it('converts a string of ancient greek characters with diacritics to their simple equivalent.', function (done) {
+			it('converts a string of ancient Greek characters with diacritics to their simple equivalent.', function (done) {
 				assert.equal(greekUtils.sanitizeDiacritics('Ἐξ οὗ καὶ δῆλον ὅτι οὐδεμία τῶν ἠθικῶν ἀρετῶν φύσει ἡμῖν ἐγγίνεται'),
 					'Εξ ου και δηλον οτι ουδεμια των ηθικων αρετων φυσει ημιν εγγινεται');
 
