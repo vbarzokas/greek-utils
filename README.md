@@ -59,7 +59,7 @@ Convert a modern Greek characters text to its phonetically equivalent Latin (sou
 Example:
 ```javascript
 var phoneticLatin = greekUtils.toPhoneticLatin('Εύηχο: αυτό που ακούγεται ωραία.');
-console.log(phoneticLatin); //Évikho: aftó pou akoúyetai oraía.
+console.log(phoneticLatin); //Évikho: aftó pou akoúyete oréa.
 ```
 
 ### - toTransliteratedLatin()

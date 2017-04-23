@@ -34,7 +34,7 @@ describe('Greek Utils:', function () {
 		describe('toPhoneticLatin', function () {
 			it('Convert a modern Greek characters text to its phonetically equivalent Latin.', function (done) {
 				assert.equal(greekUtils.toPhoneticLatin('Εύηχο: αυτό που ακούγεται ωραία.'),
-					'Évikho: aftó pou akoúyetai oraía.');
+					'Évikho: aftó pou akoúyete oréa.');
 
 				done();
 			});
