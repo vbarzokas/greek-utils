@@ -24,6 +24,9 @@ describe('Greek Utils:', function () {
 
 				assert.equal(greekUtils.toGreeklish('καλημερα, πως ειστε;'), 'kalhmera, pws eiste?');
 
+				assert.equal(greekUtils.toGreeklish('Εύηχο: αυτό που ακούγεται ωραία.'),
+					'Euhxo: auto pou akougetai wraia.');
+
 				done();
 			});
 		});
