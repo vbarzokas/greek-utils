@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vbarzokas/greek-utils.svg?branch=master)](https://travis-ci.org/vbarzokas/greek-utils)
 
-A JavaScript library for Greek language with utilities such as replacement of accented and other diacritics characters, 
+A JavaScript library for Greek language with utilities such as replacement of accented and other diacritics characters,
 conversion from Greek to phonetic, transliterated or [greeklish](https://en.wikipedia.org/wiki/Greeklish) Latin and more.
 
 [![NPM](https://nodei.co/npm/greek-utils.png)](https://nodei.co/npm/greek-utils/)
@@ -69,4 +69,13 @@ Example:
 ```javascript
 var transliteratedLatin = greekUtils.toTransliteratedLatin('Εύηχο: αυτό που ακούγεται ωραία.');
 console.log(transliteratedLatin); //Eúēkho: autó pou akoúgetai ōraía.
+```
+
+#### Ignoring characters
+All functions accept an optional second parameter as a string with characters you don't wish to be converted.
+
+Example:
+```javascript
+var greeklish = greekUtils.toGreeklish('καλημερα, πως ειστε;', ';');
+console.log(greeklish); //kalhmera, pws eiste;
 ```
