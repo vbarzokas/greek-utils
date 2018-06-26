@@ -1,6 +1,6 @@
 {
   "name": "greek-utils",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Utilities for Greek language such as accent and diacritics replacement",
   "author": "Vassilis Barzokas, Stergios Marias",
   "license": "MIT",
