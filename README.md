@@ -76,6 +76,6 @@ All functions accept an optional second parameter as a string with characters yo
 
 Example:
 ```javascript
-var greeklish = greekUtils.toGreeklish('καλημερα, πως ειστε;', ';');
-console.log(greeklish); //kalhmera, pws eiste;
+var greeklish = greekUtils.toGreeklish('καλημερα, πως ειστε;', 'ε');
+console.log(greeklish); //kalhmεra, pws εistε?
 ```
