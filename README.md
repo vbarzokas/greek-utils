@@ -80,7 +80,7 @@ var greeklish = greekUtils.toGreeklish('καλημερα, πως ειστε;', '
 console.log(greeklish); //kalhmεra, pws εistε?
 ```
 
-### - removeStopWords(text, shouldP)
+### - removeStopWords(text, [shouldRemoveMultipleWhiteSpaces])
 Remove all stop words from the given text, for both ancient and modern Greek. Also accepts an optional flag, which when set to `true` will remove the multiple whitespaces that probably have occurred in the text after removing the stop words. 
 
 _Note:_ The default value for that flag is `false`, so multiple whitespaces are expected to be returned.
@@ -89,14 +89,14 @@ Examples:
 
 * Without stripping the extra white spaces:
     ```javascript
-    var withoutStopwordsPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', false);
+    var withPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', false);
     
-    console.log(withoutStopwordsPreservedWhitespace); //μια απλή πρόταση,  δείχνει  αφαίρεση όλων  stopwords  αρχαίας  νέας Ελληνικής γλώσσας  επιστρέφει  καθαρό κείμενο.
+    console.log(withPreservedWhitespace); //μια απλή πρόταση,  δείχνει  αφαίρεση όλων  stopwords  αρχαίας  νέας Ελληνικής γλώσσας  επιστρέφει  καθαρό κείμενο.
     ```
 
 * With stripping the extra white spaces:
     ```javascript
-    var withoutStopwordsPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', true);
+    var withoutPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', true);
     
-    console.log(withoutStopwordsPreservedWhitespace); //μια απλή πρόταση, δείχνει αφαίρεση όλων stopwords αρχαίας νέας Ελληνικής γλώσσας επιστρέφει καθαρό κείμενο.
+    console.log(withoutPreservedWhitespace); //μια απλή πρόταση, δείχνει αφαίρεση όλων stopwords αρχαίας νέας Ελληνικής γλώσσας επιστρέφει καθαρό κείμενο.
     ```
