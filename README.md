@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/vbarzokas/greek-utils.svg?branch=master)](https://travis-ci.org/vbarzokas/greek-utils)
 
 A JavaScript library for Greek language with utilities such as replacement of accented and other diacritics characters,
-conversion from Greek to phonetic, transliterated or [greeklish](https://en.wikipedia.org/wiki/Greeklish) Latin and more.
+conversion from Greek to phonetic, transliterated or [greeklish](https://en.wikipedia.org/wiki/Greeklish) Latin and more, like Greek stopwords removal.
 
 [![NPM](https://nodei.co/npm/greek-utils.png)](https://nodei.co/npm/greek-utils/)
 
@@ -71,11 +71,32 @@ var transliteratedLatin = greekUtils.toTransliteratedLatin('Εύηχο: αυτό
 console.log(transliteratedLatin); //Eúēkho: autó pou akoúgetai ōraía.
 ```
 
-#### Ignoring characters
-All functions accept an optional second parameter as a string with characters you don't wish to be converted.
+##### Ignoring characters
+All of the above functions accept an optional second parameter as a string with characters you don't wish to be converted.
 
 Example:
 ```javascript
 var greeklish = greekUtils.toGreeklish('καλημερα, πως ειστε;', 'ε');
 console.log(greeklish); //kalhmεra, pws εistε?
 ```
+
+### - removeStopWords()
+Remove all stop words from the given text, for both ancient and modern Greek. Also accepts an optional flag, which when set to `true` will remove the multiple whitespaces that probably have occurred in the text after removing the stop words. 
+
+_Note:_ The default value for that flag is `false`, so multiple whitespaces are expected to be returned.
+
+Examples:
+
+* Without stripping the extra white spaces:
+    ```javascript
+    var withoutStopwordsPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', false);
+    
+    console.log(withoutStopwordsPreservedWhitespace); //μια απλή πρόταση,  δείχνει  αφαίρεση όλων  stopwords  αρχαίας  νέας Ελληνικής γλώσσας  επιστρέφει  καθαρό κείμενο.
+    ```
+
+* With stripping the extra white spaces:
+    ```javascript
+    var withoutStopwordsPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', true);
+    
+    console.log(withoutStopwordsPreservedWhitespace); //μια απλή πρόταση, δείχνει αφαίρεση όλων stopwords αρχαίας νέας Ελληνικής γλώσσας επιστρέφει καθαρό κείμενο.
+    ```

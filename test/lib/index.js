@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require('assert'),
+const assert = require('assert'),
 	path = require('path'),
 	greekUtils = require(path.join(__dirname.replace('test', ''), 'index.js'));
 
@@ -76,6 +76,26 @@ describe('Greek Utils:', function () {
 					'Ἐξ ου και δηλον οτι ουδεμια των ηθικων αρετων φυσει ημιν εγγινεται');
 
 				done();
+			});
+		});
+
+		describe('removeStopWords', function () {
+			describe('If `removeMultipleWhitespaces` is set to false:', function () {
+				it('removes all Greek stop words from a sentence and preserves all whitespaces occurred.', function (done) {
+					assert.equal(greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', false),
+						'μια απλή πρόταση,  δείχνει  αφαίρεση όλων  stopwords  αρχαίας  νέας Ελληνικής γλώσσας  επιστρέφει  καθαρό κείμενο.');
+
+					done();
+				});
+			});
+
+			describe('If `removeMultipleWhitespaces` is set to true:', function () {
+				it('removes all Greek stop words from a sentence and removes all multiple white space characters as well.', function (done) {
+					assert.equal(greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', true),
+						'μια απλή πρόταση, δείχνει αφαίρεση όλων stopwords αρχαίας νέας Ελληνικής γλώσσας επιστρέφει καθαρό κείμενο.');
+
+					done();
+				});
 			});
 		});
 	});

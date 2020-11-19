@@ -1,6 +1,6 @@
 {
   "name": "greek-utils",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "Utilities for Greek language such as accent and diacritics replacement",
   "author": "Vassilis Barzokas, Stergios Marias",
   "license": "MIT",
@@ -10,7 +10,8 @@
     "url": "https://github.com/vbarzokas/greek-utils.git"
   },
   "scripts": {
-    "test": "mocha"
+    "lint": "eslint .",
+    "test": "mocha test/**/*.js"
   },
   "keywords": [
     "greek",
@@ -23,11 +24,14 @@
     "greeklish",
     "transliterate",
     "transcript",
-    "phonetic translate"
+    "phonetic translate",
+    "stopwords",
+    "stop words"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "mocha": "^2.4.5"
+    "eslint": "^7.13.0",
+    "mocha": "^8.2.1",
+    "standard": "^16.0.3"
   }
 }
