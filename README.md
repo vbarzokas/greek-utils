@@ -21,7 +21,7 @@ Usage
 var greekUtils = require('greek-utils');
 ```
 
-### - sanitizeDiacritics()
+### - sanitizeDiacritics(text, [ignoreCharacters])
 Convert all diacritics symbols to their simple equivalent
 
 Example 1 (modern Greek):
@@ -35,8 +35,8 @@ var sanitized = greekUtils.sanitizeDiacritics('Ἐξ οὗ καὶ δῆλον �
 console.log(sanitized); //Εξ ου και δηλον οτι ουδεμια των ηθικων αρετων φυσει ημιν εγγινεται
 ```
 
-### - toGreek()
-Convert a Latin characters text to its modern Greek equivalent
+### - toGreek(text, [ignoreCharacters])
+Convert a Latin character text to its modern Greek equivalent
 
 Example:
 ```javascript
@@ -44,8 +44,8 @@ var greek = greekUtils.toGreek('kalhmera, pws eiste?');
 console.log(greek); //καλημερα, πως ειστε;
 ```
 
-### - toGreeklish()
-Convert a modern Greek characters text to its [greeklish](https://en.wikipedia.org/wiki/Greeklish) equivalent
+### - toGreeklish(text, [ignoreCharacters])
+Convert a modern Greek character text to its [greeklish](https://en.wikipedia.org/wiki/Greeklish) equivalent
 
 Example:
 ```javascript
@@ -53,8 +53,8 @@ var greeklish = greekUtils.toGreeklish('Εύηχο: αυτό που ακούγε
 console.log(greeklish); //Euhxo: auto pou akougetai wraia.
 ```
 
-### - toPhoneticLatin()
-Convert a modern Greek characters text to its phonetically equivalent Latin (sound mapping).
+### - toPhoneticLatin(text, [ignoreCharacters])
+Convert a modern Greek character text to its phonetically equivalent Latin (sound mapping).
 
 Example:
 ```javascript
@@ -62,8 +62,8 @@ var phoneticLatin = greekUtils.toPhoneticLatin('Εύηχο: αυτό που ακ
 console.log(phoneticLatin); //Évikho: aftó pou akoúyete oréa.
 ```
 
-### - toTransliteratedLatin()
-Convert a modern Greek characters text to its transliterated equivalent Latin (letter mapping).
+### - toTransliteratedLatin(text, [ignoreCharacters])
+Convert a modern Greek character text to its transliterated equivalent Latin (letter mapping).
 
 Example:
 ```javascript
@@ -80,7 +80,7 @@ var greeklish = greekUtils.toGreeklish('καλημερα, πως ειστε;', '
 console.log(greeklish); //kalhmεra, pws εistε?
 ```
 
-### - removeStopWords()
+### - removeStopWords(text, shouldP)
 Remove all stop words from the given text, for both ancient and modern Greek. Also accepts an optional flag, which when set to `true` will remove the multiple whitespaces that probably have occurred in the text after removing the stop words. 
 
 _Note:_ The default value for that flag is `false`, so multiple whitespaces are expected to be returned.
