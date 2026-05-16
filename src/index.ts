@@ -3,6 +3,7 @@ import greeklishToGreekMap from './mappings/greeklish-to-greek-map';
 import greekTogreeklishMap from './mappings/greek-to-greeklish-map';
 import greekToPhoneticLatinMap from './mappings/greek-to-phonetic-latin-map';
 import greekToTransliteratedLatinMap from './mappings/greek-to-transliterated-latin-map';
+import greekToIso843Map from './mappings/greek-to-iso843-map';
 import stopWordsMap from './mappings/stopwords-map';
 import type { ReplacementMap } from './mappings/types';
 
@@ -61,6 +62,7 @@ const compiled = {
 	greekTogreeklish: compileMap(greekTogreeklishMap, true, 'g'),
 	greekToPhoneticLatin: compileMap(greekToPhoneticLatinMap, true, 'g'),
 	greekToTransliteratedLatin: compileMap(greekToTransliteratedLatinMap, true, 'g'),
+	greekToIso843: compileMap(greekToIso843Map, true, 'g'),
 	stopWords: compileMap(stopWordsMap, true, 'gi')
 };
 
@@ -106,6 +108,15 @@ const greekUtils = {
 
 	toTransliteratedLatin(text: string, ignoreCharacters?: string): string {
 		return replaceText(text, compiled.greekToTransliteratedLatin, true, ignoreCharacters) as string;
+	},
+
+	/**
+	 * Transliterate Greek to Latin per ISO 843:2010 Type 1 (equivalent to ELOT 743 Type 2),
+	 * the official Greek government standard used for passports, IDs, and road signs.
+	 * Accents are dropped; αυ/ευ/ηυ are voiced/voiceless by context.
+	 */
+	toISO843(text: string, ignoreCharacters?: string): string {
+		return replaceText(text, compiled.greekToIso843, true, ignoreCharacters) as string;
 	},
 
 	sanitizeDiacritics(text: string, ignoreCharacters?: string): string {

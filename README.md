@@ -88,6 +88,18 @@ const transliteratedLatin = greekUtils.toTransliteratedLatin('Εύηχο: αυτ
 console.log(transliteratedLatin); //Eúēkho: autó pou akoúgetai ōraía.
 ```
 
+### - toISO843(text, [ignoreCharacters])
+Transliterate Greek to Latin per **ISO 843:2010 Type 1** (equivalent to **ELOT 743 Type 2**) — the official Greek government standard used for passports, IDs, and road signs. All accents are dropped, and αυ/ευ/ηυ are voiced (av/ev/iv) before vowels and voiced consonants, voiceless (af/ef/if) elsewhere.
+
+Examples:
+```javascript
+console.log(greekUtils.toISO843('Άγγελος Παπαδόπουλος')); //Angelos Papadopoulos
+console.log(greekUtils.toISO843('Θεσσαλονίκη'));          //Thessaloniki
+console.log(greekUtils.toISO843('αυτός'));                //aftos    (αυ before voiceless τ → af)
+console.log(greekUtils.toISO843('αυγό'));                 //avgo     (αυ before voiced γ → av)
+console.log(greekUtils.toISO843('ευχαριστώ'));            //efcharisto
+```
+
 ##### Ignoring characters
 All of the above functions accept an optional second parameter as a string with characters you don't wish to be converted.
 

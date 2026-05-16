@@ -5,6 +5,7 @@ export const {
 	toGreeklish,
 	toPhoneticLatin,
 	toTransliteratedLatin,
+	toISO843,
 	sanitizeDiacritics,
 	removeStopWords,
 	toUpperCase,

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0]
 
 ### Added
+- **`toISO843(text, [ignoreCharacters])`** — Transliterate Greek to Latin per ISO 843:2010 Type 1 (equivalent to ELOT 743 Type 2), the official Greek government standard used for passports, IDs, and road signs. Drops all accents; αυ/ευ/ηυ are voiced (av/ev/iv) before vowels and voiced consonants, voiceless (af/ef/if) elsewhere.
 - **`toUpperCase(text)`** — Greek-typographic uppercase that drops tonos on vowels (Άκης → ΑΚΗΣ) while preserving dialytika and converting final sigma. Unlike JavaScript's built-in `.toUpperCase()`, which incorrectly keeps the tonos.
 - **`toLowerCase(text)`** — Greek-aware lowercase that additionally normalizes σ at the end of a Greek word to the final form ς.
 - **`normalizeFinalSigma(text)`** — Normalizes sigma form in Greek text bidirectionally: σ at end of word → ς, ς inside a word → σ.
