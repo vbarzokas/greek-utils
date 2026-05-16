@@ -1,6 +1,7 @@
-'use strict';
 
-const stopwords = ['αλλ(α|ά)',
+import type { ReplacementMap } from './types';
+
+const stopwords: ReadonlyArray<string> = ['αλλ(α|ά)',
 	'αν',
 	'αντ(ι|ί)',
 	'απ(ο|ό)',
@@ -267,11 +268,11 @@ const stopwords = ['αλλ(α|ά)',
 	'ᾧ'
 ];
 
-const stopWordsMap = [
+const stopWordsMap: ReplacementMap = [
 	{
 		find: '(?:^|(?<=\\s))(' + stopwords.join('|') + ')(?:(?=\\s)|$)',
 		replace: ''
 	}
 ];
 
-module.exports = stopWordsMap;
+export default stopWordsMap;

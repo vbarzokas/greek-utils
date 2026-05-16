@@ -1,6 +1,7 @@
-'use strict';
 
-const diacriticsMap = [
+import type { ReplacementMap } from './types';
+
+const diacriticsMap: ReplacementMap = [
 	{ find: 'άἀἁἂἃἄἅἆἇὰάᾀᾁᾂᾃᾄᾅᾆᾇᾰᾱᾲᾳᾴᾶᾷ', replace: 'α' },
 	{ find: 'ΆἈἉἊἋἌἍἎἏᾈᾉᾊᾋᾌᾍᾎᾏᾸᾹᾺΆᾼ', replace: 'Α' },
 	{ find: 'έἐἑἒἓἔἕὲέ', replace: 'ε' },
@@ -17,4 +18,4 @@ const diacriticsMap = [
 	{ find: 'ΏὨὩὪὫὬὭὮὯ', replace: 'Ω' }
 ];
 
-module.exports = diacriticsMap;
+export default diacriticsMap;

@@ -1,6 +1,7 @@
-'use strict';
 
-const greekToGreeklishMap = [
+import type { ReplacementMap } from './types';
+
+const greekToGreeklishMap: ReplacementMap = [
 	{ find: 'ΓΧ', replace: 'GX' },
 	{ find: 'γχ', replace: 'gx' },
 	{ find: 'ΤΘ', replace: 'T8' },
@@ -100,4 +101,4 @@ const greekToGreeklishMap = [
 	{ find: ';', replace: '?' }
 ];
 
-module.exports = greekToGreeklishMap;
+export default greekToGreeklishMap;

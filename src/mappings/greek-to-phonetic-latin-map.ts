@@ -1,8 +1,9 @@
-'use strict';
 
-const greekVowels = 'αεηιουω',
-	greekConsonants = 'βγδζθκλμνξπρςστφχψ',
-	greekToPhoneticLatinMap = [
+import type { ReplacementMap } from './types';
+
+const greekVowels = 'αεηιουω';
+const greekConsonants = 'βγδζθκλμνξπρςστφχψ';
+const greekToPhoneticLatinMap: ReplacementMap = [
 		{ find: 'ηυ', replace: 'if' },
 		{ find: '(αυ)(?=[' + greekConsonants + '])', replace: 'af' },
 		{ find: '(αυ)(?=[' + greekVowels + '])', replace: 'av' },
@@ -139,4 +140,4 @@ const greekVowels = 'αεηιουω',
 		{ find: 'Ϋ', replace: 'Ï' }
 	];
 
-module.exports = greekToPhoneticLatinMap;
+export default greekToPhoneticLatinMap;

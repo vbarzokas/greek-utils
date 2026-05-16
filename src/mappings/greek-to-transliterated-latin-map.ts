@@ -1,6 +1,7 @@
-'use strict';
 
-const greekToTransliteratedLatinMap = [
+import type { ReplacementMap } from './types';
+
+const greekToTransliteratedLatinMap: ReplacementMap = [
 	{ find: 'α', replace: 'a' },
 	{ find: 'β', replace: 'v' },
 	{ find: 'γ', replace: 'g' },
@@ -77,4 +78,4 @@ const greekToTransliteratedLatinMap = [
 	{ find: ';', replace: '?' }
 ];
 
-module.exports = greekToTransliteratedLatinMap;
+export default greekToTransliteratedLatinMap;
