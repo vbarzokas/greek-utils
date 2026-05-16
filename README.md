@@ -1,6 +1,6 @@
 # Greek Utilities
 
-[![Build Status](https://travis-ci.org/vbarzokas/greek-utils.svg?branch=master)](https://travis-ci.org/vbarzokas/greek-utils)
+[![CI](https://github.com/vbarzokas/greek-utils/actions/workflows/ci.yml/badge.svg)](https://github.com/vbarzokas/greek-utils/actions/workflows/ci.yml)
 
 A JavaScript library for Greek language with utilities such as replacement of accented and other diacritics characters,
 conversion from Greek to phonetic, transliterated or [greeklish](https://en.wikipedia.org/wiki/Greeklish) Latin and more, like Greek stopwords removal.
@@ -9,16 +9,33 @@ conversion from Greek to phonetic, transliterated or [greeklish](https://en.wiki
 
 Installation
 ----------
-```javascript
-npm install --save greek-utils
-````
+```bash
+npm install greek-utils
+```
+
+Requires Node.js 18 or newer.
 
 Usage
 -----
 
-### Node.js
+### ES modules (recommended)
 ```javascript
-var greekUtils = require('greek-utils');
+import greekUtils from 'greek-utils';
+// or named imports:
+import { toGreek, sanitizeDiacritics } from 'greek-utils';
+```
+
+### CommonJS
+```javascript
+const greekUtils = require('greek-utils');
+```
+
+### TypeScript
+Types ship with the package — no `@types/greek-utils` needed.
+```typescript
+import greekUtils from 'greek-utils';
+
+const greek: string = greekUtils.toGreek('kalhmera'); // καλημερα
 ```
 
 ### - sanitizeDiacritics(text, [ignoreCharacters])
@@ -26,12 +43,12 @@ Convert all diacritics symbols to their simple equivalent
 
 Example 1 (modern Greek):
 ```javascript
-var sanitized = greekUtils.sanitizeDiacritics('Αρνάκι άσπρο και παχύ');
+const sanitized = greekUtils.sanitizeDiacritics('Αρνάκι άσπρο και παχύ');
 console.log(sanitized); //Αρνακι ασπρο και παχυ
 ```
 Example 2 (ancient Greek):
 ```javascript
-var sanitized = greekUtils.sanitizeDiacritics('Ἐξ οὗ καὶ δῆλον ὅτι οὐδεμία τῶν ἠθικῶν ἀρετῶν φύσει ἡμῖν ἐγγίνεται');
+const sanitized = greekUtils.sanitizeDiacritics('Ἐξ οὗ καὶ δῆλον ὅτι οὐδεμία τῶν ἠθικῶν ἀρετῶν φύσει ἡμῖν ἐγγίνεται');
 console.log(sanitized); //Εξ ου και δηλον οτι ουδεμια των ηθικων αρετων φυσει ημιν εγγινεται
 ```
 
@@ -40,7 +57,7 @@ Convert a Latin character text to its modern Greek equivalent
 
 Example:
 ```javascript
-var greek = greekUtils.toGreek('kalhmera, pws eiste?');
+const greek = greekUtils.toGreek('kalhmera, pws eiste?');
 console.log(greek); //καλημερα, πως ειστε;
 ```
 
@@ -49,7 +66,7 @@ Convert a modern Greek character text to its [greeklish](https://en.wikipedia.or
 
 Example:
 ```javascript
-var greeklish = greekUtils.toGreeklish('Εύηχο: αυτό που ακούγεται ωραία.');
+const greeklish = greekUtils.toGreeklish('Εύηχο: αυτό που ακούγεται ωραία.');
 console.log(greeklish); //Euhxo: auto pou akougetai wraia.
 ```
 
@@ -58,7 +75,7 @@ Convert a modern Greek character text to its phonetically equivalent Latin (soun
 
 Example:
 ```javascript
-var phoneticLatin = greekUtils.toPhoneticLatin('Εύηχο: αυτό που ακούγεται ωραία.');
+const phoneticLatin = greekUtils.toPhoneticLatin('Εύηχο: αυτό που ακούγεται ωραία.');
 console.log(phoneticLatin); //Évikho: aftó pou akoúyete oréa.
 ```
 
@@ -67,8 +84,20 @@ Convert a modern Greek character text to its transliterated equivalent Latin (le
 
 Example:
 ```javascript
-var transliteratedLatin = greekUtils.toTransliteratedLatin('Εύηχο: αυτό που ακούγεται ωραία.');
+const transliteratedLatin = greekUtils.toTransliteratedLatin('Εύηχο: αυτό που ακούγεται ωραία.');
 console.log(transliteratedLatin); //Eúēkho: autó pou akoúgetai ōraía.
+```
+
+### - toISO843(text, [ignoreCharacters])
+Transliterate Greek to Latin per **ISO 843:2010 Type 1** (equivalent to **ELOT 743 Type 2**) — the official Greek government standard used for passports, IDs, and road signs. All accents are dropped, and αυ/ευ/ηυ are voiced (av/ev/iv) before vowels and voiced consonants, voiceless (af/ef/if) elsewhere.
+
+Examples:
+```javascript
+console.log(greekUtils.toISO843('Άγγελος Παπαδόπουλος')); //Angelos Papadopoulos
+console.log(greekUtils.toISO843('Θεσσαλονίκη'));          //Thessaloniki
+console.log(greekUtils.toISO843('αυτός'));                //aftos    (αυ before voiceless τ → af)
+console.log(greekUtils.toISO843('αυγό'));                 //avgo     (αυ before voiced γ → av)
+console.log(greekUtils.toISO843('ευχαριστώ'));            //efcharisto
 ```
 
 ##### Ignoring characters
@@ -76,7 +105,7 @@ All of the above functions accept an optional second parameter as a string with 
 
 Example:
 ```javascript
-var greeklish = greekUtils.toGreeklish('καλημερα, πως ειστε;', 'ε');
+const greeklish = greekUtils.toGreeklish('καλημερα, πως ειστε;', 'ε');
 console.log(greeklish); //kalhmεra, pws εistε?
 ```
 
@@ -89,14 +118,44 @@ Examples:
 
 * Without stripping the extra white spaces:
     ```javascript
-    var withPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', false);
+    const withPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', false);
     
     console.log(withPreservedWhitespace); //μια απλή πρόταση,  δείχνει  αφαίρεση όλων  stopwords  αρχαίας  νέας Ελληνικής γλώσσας  επιστρέφει  καθαρό κείμενο.
     ```
 
 * With stripping the extra white spaces:
     ```javascript
-    var withoutPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', true);
+    const withoutPreservedWhitespace = greekUtils.removeStopWords('Αυτή είναι μια απλή πρόταση, που δείχνει την αφαίρεση όλων των stopwords της αρχαίας και νέας Ελληνικής γλώσσας και επιστρέφει το καθαρό κείμενο.', true);
     
     console.log(withoutPreservedWhitespace); //μια απλή πρόταση, δείχνει αφαίρεση όλων stopwords αρχαίας νέας Ελληνικής γλώσσας επιστρέφει καθαρό κείμενο.
     ```
+
+### - toUpperCase(text)
+Greek-typographic uppercase: drops tonos on uppercase vowels (per Greek typographic convention) while preserving dialytika. Unlike JavaScript's built-in `.toUpperCase()`, which keeps the tonos.
+
+Example:
+```javascript
+const upper = greekUtils.toUpperCase('Άγγελος και Ελένη');
+console.log(upper); //ΑΓΓΕΛΟΣ ΚΑΙ ΕΛΕΝΗ
+
+// Compare with native behaviour (incorrect by Greek typographic rules):
+console.log('Άγγελος'.toUpperCase()); //ΆΓΓΕΛΟΣ
+```
+
+### - toLowerCase(text)
+Greek-aware lowercase: applies native lowercasing and additionally converts σ at the end of a Greek word to the final form ς.
+
+Example:
+```javascript
+const lower = greekUtils.toLowerCase('ΚΑΛΟΣ ΑΝΘΡΩΠΟΣ');
+console.log(lower); //καλος ανθρωπος (with final ς on each word)
+```
+
+### - normalizeFinalSigma(text)
+Normalizes sigma in Greek text: any σ at the end of a Greek word becomes ς, and any ς inside a word becomes σ. Useful for cleaning up Greek text that has the wrong sigma form.
+
+Example:
+```javascript
+const normalized = greekUtils.normalizeFinalSigma('καλοσ και ωραιοσ');
+console.log(normalized); //καλος και ωραιος
+```

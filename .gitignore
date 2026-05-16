@@ -30,6 +30,8 @@ lib-cov
 
 # NodeJS Coverage directory used by tools like istanbul
 coverage
+.nyc_output
+.c8_output
 
 # NodeJS Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -43,3 +45,6 @@ build/Release
 # NodeJS Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
+
+# TypeScript build output
+/lib/
