@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0]
 
 ### Added
+- **`toUpperCase(text)`** — Greek-typographic uppercase that drops tonos on vowels (Άκης → ΑΚΗΣ) while preserving dialytika and converting final sigma. Unlike JavaScript's built-in `.toUpperCase()`, which incorrectly keeps the tonos.
+- **`toLowerCase(text)`** — Greek-aware lowercase that additionally normalizes σ at the end of a Greek word to the final form ς.
+- **`normalizeFinalSigma(text)`** — Normalizes sigma form in Greek text bidirectionally: σ at end of word → ς, ς inside a word → σ.
 - TypeScript declaration file (auto-generated from TypeScript source) — consumers now get types out of the box.
 - ESM entry point (`lib/index.mjs`) with named exports — supports `import { toGreek } from 'greek-utils'`.
 - `exports`, `types`, `files`, and `engines` fields in `package.json` (Node `>=18`).

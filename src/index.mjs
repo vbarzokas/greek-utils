@@ -6,7 +6,10 @@ export const {
 	toPhoneticLatin,
 	toTransliteratedLatin,
 	sanitizeDiacritics,
-	removeStopWords
+	removeStopWords,
+	toUpperCase,
+	toLowerCase,
+	normalizeFinalSigma
 } = greekUtils;
 
 export default greekUtils;

@@ -117,3 +117,33 @@ Examples:
     
     console.log(withoutPreservedWhitespace); //μια απλή πρόταση, δείχνει αφαίρεση όλων stopwords αρχαίας νέας Ελληνικής γλώσσας επιστρέφει καθαρό κείμενο.
     ```
+
+### - toUpperCase(text)
+Greek-typographic uppercase: drops tonos on uppercase vowels (per Greek typographic convention) while preserving dialytika. Unlike JavaScript's built-in `.toUpperCase()`, which keeps the tonos.
+
+Example:
+```javascript
+const upper = greekUtils.toUpperCase('Άγγελος και Ελένη');
+console.log(upper); //ΑΓΓΕΛΟΣ ΚΑΙ ΕΛΕΝΗ
+
+// Compare with native behaviour (incorrect by Greek typographic rules):
+console.log('Άγγελος'.toUpperCase()); //ΆΓΓΕΛΟΣ
+```
+
+### - toLowerCase(text)
+Greek-aware lowercase: applies native lowercasing and additionally converts σ at the end of a Greek word to the final form ς.
+
+Example:
+```javascript
+const lower = greekUtils.toLowerCase('ΚΑΛΟΣ ΑΝΘΡΩΠΟΣ');
+console.log(lower); //καλος ανθρωπος (with final ς on each word)
+```
+
+### - normalizeFinalSigma(text)
+Normalizes sigma in Greek text: any σ at the end of a Greek word becomes ς, and any ς inside a word becomes σ. Useful for cleaning up Greek text that has the wrong sigma form.
+
+Example:
+```javascript
+const normalized = greekUtils.normalizeFinalSigma('καλοσ και ωραιοσ');
+console.log(normalized); //καλος και ωραιος
+```

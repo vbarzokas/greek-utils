@@ -16,8 +16,31 @@ type CompiledMap = ReadonlyArray<CompiledRule>;
 
 const CHAR_CLASS_SPECIALS = /[\]\\^-]/g;
 
+// Greek-typographic uppercase: tonos is dropped on uppercase vowels (dialytika preserved).
+// Precomposed forms are replaced; combining tonos (U+0301) is stripped — V8 decomposes
+// precomposed dialytika+tonos (e.g. ΐ→Ϊ́) when uppercasing, leaving the tonos as a combining mark.
+const UPPERCASE_TONOS_MAP: Readonly<Record<string, string>> = {
+	'Ά': 'Α',
+	'Έ': 'Ε',
+	'Ή': 'Η',
+	'Ί': 'Ι',
+	'Ό': 'Ο',
+	'Ύ': 'Υ',
+	'Ώ': 'Ω',
+	'́': ''
+};
+const UPPERCASE_TONOS_REGEX = /[ΆΈΉΊΌΎΏ́]/g;
+
+// Final sigma: σ at end of a Greek word should be ς; ς inside a Greek word should be σ.
+const FINAL_SIGMA_REGEX = /σ(?!\p{Script=Greek})/gu;
+const MEDIAL_SIGMA_REGEX = /ς(?=\p{Script=Greek})/gu;
+
 function escapeForCharClass(str: string): string {
 	return str.replace(CHAR_CLASS_SPECIALS, '\\$&');
+}
+
+function normalizeFinalSigmaImpl(text: string): string {
+	return text.replace(FINAL_SIGMA_REGEX, 'ς').replace(MEDIAL_SIGMA_REGEX, 'σ');
 }
 
 function buildPattern(rawFind: string, isExactMatch: boolean): string {
@@ -101,6 +124,36 @@ const greekUtils = {
 		}
 
 		return cleanText;
+	},
+
+	/**
+	 * Greek-typographic uppercase: drops tonos on vowels (Άκης → ΑΚΗΣ), preserves dialytika.
+	 */
+	toUpperCase(text: string): string {
+		if (typeof text !== 'string' || text.length === 0) {
+			return text;
+		}
+		return text.toUpperCase().replace(UPPERCASE_TONOS_REGEX, (ch) => UPPERCASE_TONOS_MAP[ch]).normalize('NFC');
+	},
+
+	/**
+	 * Greek-aware lowercase: applies native lowercasing then normalizes σ at end of word to ς.
+	 */
+	toLowerCase(text: string): string {
+		if (typeof text !== 'string' || text.length === 0) {
+			return text;
+		}
+		return normalizeFinalSigmaImpl(text.toLowerCase());
+	},
+
+	/**
+	 * Normalizes sigma in Greek text: σ at end of a Greek word becomes ς; ς mid-word becomes σ.
+	 */
+	normalizeFinalSigma(text: string): string {
+		if (typeof text !== 'string' || text.length === 0) {
+			return text;
+		}
+		return normalizeFinalSigmaImpl(text);
 	}
 };
 
